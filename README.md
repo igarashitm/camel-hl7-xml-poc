@@ -18,15 +18,8 @@ This PoC demonstrates HL7 message transformation using Apache Camel's new `targe
 ### Required Tools
 
 1. **Camel JBang** (Latest version)
-   ```bash
-   curl -Ls https://sh.jbang.dev | bash -s - app install camel@apache/camel
-   ```
 
 2. **Kaoto VSCode Extension**
-   - Install from [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-kaoto)
-
-3. **Java 17+**
-   - Required by Camel JBang
 
 4. **HL7 XML Schemas**
    
