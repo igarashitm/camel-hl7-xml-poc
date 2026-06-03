@@ -55,6 +55,7 @@ camel-hl7-xml-poc/
 ├── 03.hl7-datamapper-transform/ # Route 3: HL7→HL7 transformation with DataMapper
 ├── schemas/                     # HL7 XML schemas (downloaded locally)
 ├── images/                      # Documentation screenshots
+├── KAOTO_DATAMAPPER_SETUP.md    # DataMapper configuration guide
 └── README.md                    # This file
 ```
 
