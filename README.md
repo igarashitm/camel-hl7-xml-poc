@@ -256,13 +256,3 @@ To check for Camel releases, visit: https://camel.apache.org/download/
 ## License
 
 This PoC is provided as-is for demonstration purposes.
-
-## Contributing
-
-This is a proof-of-concept project. For issues or suggestions, please open an issue on GitHub.
-
-## Acknowledgments
-
-- Apache Camel team for the new `targetFormat=XML` feature
-- Kaoto team for the visual data mapping tools
-- HL7 International for providing official HL7 v2.5 XML schemas
