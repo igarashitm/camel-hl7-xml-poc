@@ -1,0 +1,28 @@
+# HL7 XML Schemas (user downloads locally)
+schemas/
+
+# Output directories (generated files)
+*/output/
+
+# Camel JBang cache
+**/.camel-jbang/
+
+# IDE and tools
+.vscode/
+.idea/
+*.iml
+.claude/
+.bob/
+.kaoto
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*~

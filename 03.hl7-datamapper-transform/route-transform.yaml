@@ -1,0 +1,36 @@
+# camel-k: dependency=camel:hl7
+# camel-k: dependency=camel:xslt-saxon
+# modeline: camel-version=4.21.0-SNAPSHOT
+
+- route:
+    id: hl7-datamapper-transform
+    from:
+      uri: file
+      parameters:
+        directoryName: input
+        fileName: adt-a01-hospital-a.hl7
+        noop: true
+        idempotent: false
+      steps:
+        - log:
+            message: "Hospital A HL7 ER7 Input:\n${body}"
+        - unmarshal:
+            hl7:
+              targetFormat: XML
+        - log:
+            message: "Hospital A HL7 XML:\n${body}"
+        # DataMapper XSLT step will be configured here via Kaoto
+        - to:
+            uri: xslt-saxon:file:kaoto-datamapper-placeholder.xsl
+        - log:
+            message: "Hospital B HL7 XML:\n${body}"
+        - marshal:
+            hl7: {}
+        - log:
+            message: "Hospital B HL7 ER7 Output:\n${body}"
+        - to:
+            uri: file:output
+            parameters:
+              fileName: adt-a01-hospital-b.hl7
+        - log:
+            message: "✅ Hospital B HL7 saved to output/adt-a01-hospital-b.hl7"

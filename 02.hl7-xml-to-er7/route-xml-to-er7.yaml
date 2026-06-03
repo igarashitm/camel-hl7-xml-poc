@@ -1,0 +1,26 @@
+# camel-k: dependency=camel:hl7
+# modeline: camel-version=4.21.0-SNAPSHOT
+
+- route:
+    id: hl7-xml-to-er7
+    from:
+      uri: file
+      parameters:
+        directoryName: input
+        fileName: adt-a01-input.xml
+        noop: true
+        idempotent: false
+      steps:
+        - log:
+            message: "HL7 XML Input:\n${body}"
+        - convertBodyTo: org.w3c.dom.Document
+        - marshal:
+            hl7: {}
+        - log:
+            message: "HL7 ER7 Output:\n${body}"
+        - to:
+            uri: file:output
+            parameters:
+              fileName: sample-adt-a01-er7.hl7
+        - log:
+            message: "✅ ER7 saved to output/sample-adt-a01-er7.hl7"

@@ -1,0 +1,27 @@
+# camel-k: dependency=camel:hl7
+# modeline: camel-version=4.21.0-SNAPSHOT
+
+- route:
+    id: hl7-er7-to-xml
+    from:
+      uri: file
+      parameters:
+        directoryName: input
+        fileName: adt-a01-input.hl7
+        noop: true
+        idempotent: false
+      steps:
+        - log:
+            message: "HL7 ER7 Input:\n${body}"
+        - unmarshal:
+            hl7:
+              targetFormat: XML
+        - log:
+            message: "HL7 XML Output:\n${body}"
+        - to:
+            uri: file
+            parameters:
+              directoryName: output
+              fileName: sample-adt-a01-hapi.xml
+        - log:
+            message: "✅ XML saved to output/sample-adt-a01-hapi.xml"
