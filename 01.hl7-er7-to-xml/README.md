@@ -24,7 +24,7 @@ File Consumer → Read HL7 ER7 → Unmarshal (targetFormat=XML) → Log XML → 
 
 ```bash
 cd 01.hl7-er7-to-xml
-camel run route-er7-to-xml.yaml --camel-version=4.21.0-SNAPSHOT
+camel run route-er7-to-xml.camel.yaml --camel-version=4.21.0-SNAPSHOT
 ```
 
 **Important Notes**:

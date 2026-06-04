@@ -80,7 +80,7 @@ PV1|1|IP|W1^R101^B1^HOSP_B||||SMITH^JANE^A^^MD|||...
 
 ```bash
 cd 03.hl7-datamapper-transform
-camel run route-transform.yaml --camel-version=4.21.0-SNAPSHOT
+camel run route-transform.camel.yaml --camel-version=4.21.0-SNAPSHOT
 ```
 
 **Important Notes**:

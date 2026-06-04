@@ -88,7 +88,7 @@ Demonstrates XML to ER7 conversion (reverse direction).
 **Execution**:
 ```bash
 cd 02.hl7-xml-to-er7
-camel run route-xml-to-er7.yaml adt-a01-input.xml
+camel run route-xml-to-er7.camel.yaml adt-a01-input.xml
 ```
 
 **Round-Trip Testing**: Use Route 1's XML output as input for Route 2 to verify data integrity.
@@ -108,7 +108,7 @@ Demonstrates hospital system integration with visual data mapping.
 **Execution**:
 ```bash
 cd 03.hl7-datamapper-transform
-camel run route-transform.yaml adt-a01-hospital-a.hl7 kaoto-datamapper-*.xsl
+camel run route-transform.camel.yaml adt-a01-hospital-a.hl7 kaoto-datamapper-*.xsl
 ```
 
 **Key Transformations**:
@@ -226,22 +226,21 @@ All routes require `--dep` to add the HAPI HL7 v2.5 structure library (it's an o
 ```bash
 # Route 1: ER7 → XML
 cd 01.hl7-er7-to-xml
-camel run route-er7-to-xml.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
+camel run route-er7-to-xml.camel.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
 
 # Route 2: XML → ER7
 cd 02.hl7-xml-to-er7
-camel run route-xml-to-er7.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
+camel run route-xml-to-er7.camel.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
 
 # Route 3: Hospital A → Hospital B transformation
 cd 03.hl7-datamapper-transform
-camel run route-transform.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
+camel run route-transform.camel.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
 ```
 
 ### When Camel 4.21.0 is Released
 
-Once Camel 4.21.0 is officially released (with PR #23741 merged), you can:
-1. Remove the `# modeline: camel-version=4.21.0-SNAPSHOT` comment from route files
-2. Run with: `camel run route.yaml` (without `--camel-version` flag)
+Once Camel 4.21.0 is officially released, you can:
+1. Run with: `camel run route.yaml` (without `--camel-version` flag)
 
 To check for Camel releases, visit: https://camel.apache.org/download/
 

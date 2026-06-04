@@ -25,7 +25,7 @@ File Consumer → Read HL7 XML → Marshal to ER7 → Log ER7 → Save to output
 
 ```bash
 cd 02.hl7-xml-to-er7
-camel run route-xml-to-er7.yaml --camel-version=4.21.0-SNAPSHOT
+camel run route-xml-to-er7.camel.yaml --camel-version=4.21.0-SNAPSHOT
 ```
 
 **Important Notes**:
