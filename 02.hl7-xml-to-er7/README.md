@@ -25,7 +25,7 @@ File Consumer → Read HL7 XML → Marshal to ER7 → Log ER7 → Save to output
 
 ```bash
 cd 02.hl7-xml-to-er7
-camel run route-xml-to-er7.camel.yaml --camel-version=4.21.0-SNAPSHOT
+camel run route-xml-to-er7.camel.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
 ```
 
 **Important Notes**:
@@ -53,9 +53,9 @@ PV1|1|I|WARD1^ROOM101^BED1^HOSPITAL||||DOCTOR123^SMITH^JANE|||MED||||1|||DOCTOR1
 ## Round-Trip Testing
 
 Verify round-trip conversion:
-1. Run Route 1 to convert ER7 → XML: `cd ../01.hl7-er7-to-xml && camel run route-er7-to-xml.yaml --camel-version=4.21.0-SNAPSHOT`
+1. Run Route 1 to convert ER7 → XML: `cd ../01.hl7-er7-to-xml && camel run route-er7-to-xml.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0`
 2. Copy XML output to Route 2 input: `cp ../01.hl7-er7-to-xml/output/sample-adt-a01-hapi.xml input/adt-a01-input.xml`
-3. Run Route 2 to convert XML → ER7: `camel run route-xml-to-er7.yaml --camel-version=4.21.0-SNAPSHOT`
+3. Run Route 2 to convert XML → ER7: `camel run route-xml-to-er7.yaml --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0`
 4. Compare outputs - they should be semantically equivalent
 
 **Note**: The marshal operation does NOT use `targetFormat` parameter. It always produces ER7 format by default.

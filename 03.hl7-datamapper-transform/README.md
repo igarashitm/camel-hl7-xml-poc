@@ -8,9 +8,9 @@ This route demonstrates hospital system integration using Kaoto DataMapper for v
 
 ## Files
 
-- **route-transform.yaml** - Main route file with XSLT transformation step
+- **route-transform.camel.yaml** - Main route file with XSLT transformation step
 - **input/adt-a01-hospital-a.hl7** - Sample HL7 message from Hospital A
-- **kaoto-datamapper-placeholder.xsl** - Placeholder XSLT (to be replaced by Kaoto-generated XSL)
+- **kaoto-datamapper-\*.xsl** - Kaoto DataMapper-generated XSLT transformation
 - **output/** - Generated transformed HL7 files
 
 ## Flow
@@ -58,35 +58,39 @@ PV1|1|IP|W1^R101^B1^HOSP_B||||SMITH^JANE^A^^MD|||...
 
 ## Configuring DataMapper
 
-<!-- TODO: Screenshot - Opening the XSLT step in Kaoto and selecting "Configure DataMapper" -->
-![Opening DataMapper](../images/datamapper-open.png)
+![DataMapper](../images/DataMapper.png)
 
-1. Open `route-transform.yaml` in VSCode
+1. Open `route-transform.camel.yaml` in VSCode
 2. Kaoto extension will activate automatically
-3. Click on the XSLT transform step
-4. Select "Configure DataMapper"
-5. Load source schema: `schemas/ADT_A01.xsd`
-6. Load target schema: `schemas/ADT_A01.xsd` (same schema for HL7→HL7)
+3. Click on the DataMapper step
+4. Click "Configure" button
+![Opening DataMapper](../images/datamapper-open.png)
+5. Attach schema files to Source Body:
+   - `schemas/ADT_A01.xsd`
+   - `schemas/segments.xsd`
+   - `schemas/fields.xsd`
+   - `schemas/datatypes.xsd`
+![Attach Schema (Source Body)](../images/attach-schema-source.png)
+6. Attach schema files to Target Body:
+   - `schemas/ADT_A01.xsd`
+   - `schemas/segments.xsd`
+   - `schemas/fields.xsd`
+   - `schemas/datatypes.xsd`
+![Attach Schema (Target Body)](../images/attach-schema-target.png)
 7. Create mappings:
    - **Direct mappings**: Patient name, DOB, gender (unchanged)
    - **Constant values**: Facility codes (HOSP_B_ADT, HOSPITAL_B)
    - **Transformations**: Patient ID prefix, admission type code, location abbreviation
-8. Save the mapping (generates XSL file)
-
-<!-- TODO: Screenshot - DataMapper UI with all Hospital A → B mappings completed -->
-![Completed mappings](../images/datamapper-completed-mappings.png)
 
 ## Execution
 
 ```bash
 cd 03.hl7-datamapper-transform
-camel run route-transform.camel.yaml --camel-version=4.21.0-SNAPSHOT
+camel run route-transform.camel.yaml kaoto-datamapper-*.xsl --dep=mvn:ca.uhn.hapi:hapi-structures-v25:2.6.0
 ```
 
 **Important Notes**:
 - The route will continuously process the input file until stopped (Ctrl+C)
-- The placeholder XSL performs identity transformation (no changes)
-- Replace `kaoto-datamapper-placeholder.xsl` with Kaoto-generated XSL for actual transformations
 - Input HL7 file must use `\r` (carriage return) as segment separator
 
 ## Expected Output
@@ -114,6 +118,10 @@ The route will:
 - **Flexible**: Easy to add/modify mappings in Kaoto
 - **Reusable**: Generated XSL can be used in any XSLT processor
 
+## Further Reading
+
+- **[KAOTO_DATAMAPPER_SETUP.md](../KAOTO_DATAMAPPER_SETUP.md)** - Detailed mapping table, XPath reference, and schema dependency chain
+
 ## Real-World Applications
 
 This pattern is common in:
@@ -122,8 +130,3 @@ This pattern is common in:
 - EHR system migrations
 - Multi-site healthcare networks
 - Regulatory compliance transformations
-
-## Screenshots
-
-<!-- TODO: Screenshot - Route3 console output showing Hospital A input → XML → Hospital B XML → ER7 output -->
-![Route3 console output](../images/route3-console-output.png)

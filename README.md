@@ -124,10 +124,7 @@ camel run route-transform.camel.yaml adt-a01-hospital-a.hl7 kaoto-datamapper-*.x
 ## Kaoto DataMapper
 
 <!-- TODO: Screenshot - DataMapper UI with completed Hospital A → B mappings -->
-![DataMapper with completed mappings](images/datamapper-completed-mappings.png)
-
-<!-- TODO: Screencast - DataMapper workflow: loading schemas, creating mappings, running the route -->
-![DataMapper workflow demo](images/datamapper-workflow.gif)
+![DataMapper](images/DataMapper.png)
 
 ## Key Concepts
 
@@ -196,24 +193,20 @@ This pattern is common in:
 
 ## References
 
+- **HL7 International**: https://www.hl7.org
 - **Apache Camel HL7 Component**: https://camel.apache.org/components/latest/hl7-dataformat.html
 - **CAMEL-23669**: https://issues.apache.org/jira/browse/CAMEL-23669
 - **HAPI HL7 Library**: https://hapifhir.github.io/hapi-hl7v2/
-- **NIST HL7 Schemas**: https://github.com/usnistgov/hl7-schemas
 - **Kaoto**: https://kaoto.io/
 - **Reference X12 PoC**: https://github.com/igarashitm/camel-x12-837-poc
 
 ## Important Note: Camel Version & PR Status
 
-**This PoC uses Apache Camel 4.21.0-SNAPSHOT with PR #23741**
+**This PoC uses Apache Camel 4.21.0-SNAPSHOT**
 
 ### Required Changes
 
-1. **CAMEL-23669**: The `targetFormat=XML` feature is implemented in commit `1208229b416`
-2. **PR #23741**: Bug fix for YAML DSL reifier (submitted: https://github.com/apache/camel/pull/23741)
-   - **Status**: Submitted, awaiting merge
-   - **Issue**: `HL7DataFormatReifier` was not propagating `targetFormat` parameter from YAML to HL7DataFormat
-   - **Impact**: Without this fix, `targetFormat: XML` in YAML routes is ignored
+1. **[CAMEL-23669](https://issues.apache.org/jira/browse/CAMEL-23669)**: Add `targetFormat=XML` option to `camel-hl7`
 
 ### Current Status
 
