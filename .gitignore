@@ -1,5 +1,5 @@
 # HL7 XML Schemas (user downloads locally)
-schemas/
+**/schemas/
 
 # Output directories (generated files)
 */output/
@@ -13,7 +13,6 @@ schemas/
 *.iml
 .claude/
 .bob/
-.kaoto
 
 # OS
 .DS_Store

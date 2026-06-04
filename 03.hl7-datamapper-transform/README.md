@@ -27,7 +27,7 @@ Marshal to ER7 → Save to output/ → Log Transformed ER7 (Hospital B)
 - Java 17+
 - Apache Camel 4.21.0-SNAPSHOT with PR #23741 merged
 - VSCode with Kaoto extension installed
-- HL7 v2.5 XML schemas in `../schemas/` directory
+- HL7 v2.5 XML schemas in `schemas/` directory
 
 ## Data Transformation
 
@@ -65,8 +65,8 @@ PV1|1|IP|W1^R101^B1^HOSP_B||||SMITH^JANE^A^^MD|||...
 2. Kaoto extension will activate automatically
 3. Click on the XSLT transform step
 4. Select "Configure DataMapper"
-5. Load source schema: `../schemas/ADT_A01.xsd`
-6. Load target schema: `../schemas/ADT_A01.xsd` (same schema for HL7→HL7)
+5. Load source schema: `schemas/ADT_A01.xsd`
+6. Load target schema: `schemas/ADT_A01.xsd` (same schema for HL7→HL7)
 7. Create mappings:
    - **Direct mappings**: Patient name, DOB, gender (unchanged)
    - **Constant values**: Facility codes (HOSP_B_ADT, HOSPITAL_B)

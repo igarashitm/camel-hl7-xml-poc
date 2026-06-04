@@ -36,12 +36,12 @@ This PoC demonstrates HL7 message transformation using Apache Camel's new `targe
       - Log in to your HL7 account
       - Navigate to: https://www.hl7.org/implement/standards/product_brief.cfm?product_id=144
       - Download "HL7 Version 2.5 XML Encoding Schema" package
-      - Extract schemas to `schemas/` directory in this project
+      - Extract schemas to `03.hl7-datamapper-transform/schemas/` directory
    
    c. **Verify schemas**:
       ```bash
       # Check that schemas use correct namespace
-      grep -r "urn:hl7-org:v2xml" schemas/
+      grep -r "urn:hl7-org:v2xml" 03.hl7-datamapper-transform/schemas/
       ```
    
    **Note**: This PoC uses HL7 v2.5 (see MSH-12 field in sample messages).
@@ -53,7 +53,7 @@ camel-hl7-xml-poc/
 ├── 01.hl7-er7-to-xml/           # Route 1: Basic ER7 → XML conversion
 ├── 02.hl7-xml-to-er7/           # Route 2: Basic XML → ER7 conversion
 ├── 03.hl7-datamapper-transform/ # Route 3: HL7→HL7 transformation with DataMapper
-├── schemas/                     # HL7 XML schemas (downloaded locally)
+│   └── schemas/                 # HL7 XML schemas (downloaded locally)
 ├── images/                      # Documentation screenshots
 ├── KAOTO_DATAMAPPER_SETUP.md    # DataMapper configuration guide
 └── README.md                    # This file

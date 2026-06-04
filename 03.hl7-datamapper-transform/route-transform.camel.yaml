@@ -13,24 +13,37 @@
         idempotent: false
       steps:
         - log:
-            message: "Hospital A HL7 ER7 Input:\n${body}"
+            message: |-
+              Hospital A HL7 ER7 Input:
+              ${body}
         - unmarshal:
             hl7:
               targetFormat: XML
         - log:
-            message: "Hospital A HL7 XML:\n${body}"
-        # DataMapper XSLT step will be configured here via Kaoto
-        - to:
-            uri: xslt-saxon:file:kaoto-datamapper-placeholder.xsl
+            message: |-
+              Hospital A HL7 XML:
+              ${body}
+        - step:
+            id: kaoto-datamapper-d7962815
+            steps:
+              - to:
+                  id: kaoto-datamapper-xslt-1354
+                  uri: xslt-saxon:kaoto-datamapper-d7962815.xsl
+                  parameters:
+                    failOnNullBody: false
         - log:
-            message: "Hospital B HL7 XML:\n${body}"
+            message: |-
+              Hospital B HL7 XML:
+              ${body}
         - marshal:
             hl7: {}
         - log:
-            message: "Hospital B HL7 ER7 Output:\n${body}"
+            message: |-
+              Hospital B HL7 ER7 Output:
+              ${body}
         - to:
             uri: file:output
             parameters:
               fileName: adt-a01-hospital-b.hl7
         - log:
-            message: "✅ Hospital B HL7 saved to output/adt-a01-hospital-b.hl7"
+            message: ✅ Hospital B HL7 saved to output/adt-a01-hospital-b.hl7

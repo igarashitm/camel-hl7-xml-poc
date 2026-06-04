@@ -1,0 +1,29 @@
+{
+	"kaoto-datamapper-d7962815": {
+		"sourceBody": {
+			"type": "XML Schema",
+			"filePath": [
+				"schemas/ADT_A01.xsd",
+				"schemas/segments.xsd",
+				"schemas/fields.xsd",
+				"schemas/datatypes.xsd"
+			]
+		},
+		"sourceParameters": {},
+		"targetBody": {
+			"type": "XML Schema",
+			"filePath": [
+				"schemas/ADT_A01.xsd",
+				"schemas/segments.xsd",
+				"schemas/datatypes.xsd",
+				"schemas/fields.xsd"
+			]
+		},
+		"xsltPath": "kaoto-datamapper-d7962815.xsl",
+		"namespaceMap": {
+			"xs": "http://www.w3.org/2001/XMLSchema",
+			"fn": "http://www.w3.org/2005/xpath-functions",
+			"hl7": "urn:hl7-org:v2xml"
+		}
+	}
+}
